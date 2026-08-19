@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> :3 </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Petit+Formal+Script&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush: #f7e9ee;
+    --blush-deep: #f0d3de;
+    --pink: #e8b4c8;
+    --pink-hot: #d98cae;
+    --rose-line: #c98aa3;
+    --ink: #3a2c33;
+    --ink-soft: #8a7580;
+    --white: #fffaf9;
+    --locked: #d9d2d5;
+    --locked-text: #a89ba2;
+    --done: #2b2126;
+    --done-text: #cbb9c0;
+    --shadow: 0 8px 24px rgba(180, 110, 140, 0.18);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background-color: var(--blush);
+    background-image: radial-gradient(circle, rgba(200,140,165,0.35) 1px, transparent 1.4px);
+    background-size: 26px 26px;
+    color: var(--ink);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  header{
+    text-align:center;
+    padding: 56px 20px 28px;
+    position: relative;
+  }
+
+  .eyebrow{
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--pink-hot);
+    font-weight: 600;
+  }
+
+  h1{
+    font-family: 'Petit Formal Script', cursive;
+    font-size: 74px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1;
+    margin-top: 6px;
+    text-shadow: 2px 2px 0 rgba(255,255,255,0.6);
+  }
+
+  .subtitle{
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .progress-wrap{
+    max-width: 480px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+  }
+
+  .progress-label{
+    display:flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+
+  .progress-track{
+    height: 10px;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.08);
+    border: 1px solid rgba(217,140,174,0.4);
+  }
+
+  .progress-fill{
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink) 0%, var(--pink-hot) 100%);
+    width: 0%;
+    transition: width 0.6s ease;
+    border-radius: 20px;
+  }
+
+  .stats{
+    display:flex;
+    justify-content:center;
+    gap: 28px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .stat{
+    text-align:center;
+  }
+  .stat .num{
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--pink-hot);
+  }
+  .stat .lbl{
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .toolbar{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:26px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+  .btn{
+    font-family:'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border-radius: 30px;
+    border: 1px solid var(--pink-hot);
+    background: var(--white);
+    color: var(--pink-hot);
+    cursor:pointer;
+    transition: all .2s ease;
+  }
+  .btn:hover{
+    background: var(--pink-hot);
+    color: var(--white);
+  }
+
+  main{
+    max-width: 1500px;
+    margin: 46px auto 0;
+    padding: 0 24px;
+    overflow-x: auto;
+  }
+
+  .malla{
+    display:grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 190px;
+    gap: 14px;
+    align-items: start;
+    padding-bottom: 20px;
+  }
+
+  .col{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .col-head{
+    text-align:center;
+    padding: 6px 0 10px;
+  }
+  .col-head .sem{
+    font-family:'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .col-head .via{
+    font-size: 9px;
+    color: var(--pink-hot);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+
+  .card{
+    background: var(--white);
+    border-radius: 14px;
+    padding: 12px 12px 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(217,140,174,0.35);
+    cursor: pointer;
+    min-height: 92px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    transition: transform .18s ease, box-shadow .18s ease, background .25s ease, filter .25s ease;
+    position: relative;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+  }
+
+  .card .code{
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .card .name{
+    font-family: 'Playfair Display', serif;
+    font-size: 12.5px;
+    line-height: 1.3;
+    margin-top: 4px;
+    color: var(--ink);
+  }
+  .card .credits{
+    margin-top: 8px;
+    font-size: 9px;
+    color: var(--ink-soft);
+    letter-spacing: 0.4px;
+  }
+  .card .badge{
+    position:absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 13px;
+  }
+
+  /* estado: disponible (no hecho, desbloqueado) */
+  .card.available{
+    background: linear-gradient(160deg, var(--white) 60%, var(--blush-deep) 100%);
+    border-color: var(--pink-hot);
+  }
+
+  /* estado: bloqueado */
+  .card.locked{
+    background: var(--locked);
+    border-color: transparent;
+    color: var(--locked-text);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  .card.locked .name, .card.locked .code, .card.locked .credits{
+    color: var(--locked-text);
+  }
+  .card.locked:hover{ transform:none; }
+
+  /* estado: completado */
+  .card.done{
+    background: var(--done);
+    border-color: var(--done);
+  }
+  .card.done .name{
+    color: var(--done-text);
+    text-decoration: line-through;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 1.5px;
+  }
+  .card.done .code, .card.done .credits{
+    color: #8f7a85;
+  }
+
+  .lock-icon{ opacity:0.55; }
+
+  .titulacion{
+    margin-top: 4px;
+    text-align:center;
+  }
+  .titulacion select{
+    font-family:'Poppins', sans-serif;
+    font-size: 10px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    border: 1px solid var(--pink-hot);
+    background: var(--white);
+    color: var(--ink);
+    width: 100%;
+  }
+
+  .hidden{ display:none !important; }
+
+  .card .grade-tag{
+    position:absolute;
+    top: 8px;
+    right: 10px;
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size: 12px;
+    padding: 1px 7px;
+    border-radius: 20px;
+    background: var(--pink);
+    color: var(--ink);
+  }
+  .card.done .grade-tag{
+    background: var(--pink-hot);
+    color: var(--white);
+  }
+  .card .grade-tag.low{ background:#e79bb0; color:#3a2c33; }
+  .card .grade-tag.mid{ background:#e8b4c8; }
+  .card .grade-tag.high{ background:#9fd6b5; color:#243b2c; }
+
+  /* Modal de nota */
+  .overlay{
+    position: fixed; inset: 0;
+    background: rgba(58,44,51,0.45);
+    display:flex; align-items:center; justify-content:center;
+    z-index: 50;
+  }
+  .overlay.hidden{ display:none !important; }
+  .modal{
+    background: var(--white);
+    border-radius: 18px;
+    padding: 26px 26px 20px;
+    width: 300px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--pink);
+    text-align:center;
+  }
+  .modal .m-code{
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--pink-hot);
+    text-transform: uppercase;
+  }
+  .modal .m-name{
+    font-family:'Playfair Display', serif;
+    font-size: 16px;
+    margin: 6px 0 18px;
+    color: var(--ink);
+  }
+  .modal input[type=number]{
+    width: 100%;
+    font-family:'Playfair Display', serif;
+    font-size: 28px;
+    text-align:center;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--pink-hot);
+    color: var(--ink);
+    background: var(--blush);
+  }
+  .modal .m-hint{
+    font-size: 10px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .modal .m-actions{
+    display:flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .modal .m-actions .btn{ flex:1; }
+  .m-save{ background: var(--pink-hot); color: var(--white); }
+
+  /* Resumen académico */
+  .academic-summary{
+    max-width: 1100px;
+    margin: 46px auto 0;
+    padding: 0 24px;
+  }
+  .academic-summary h2{
+    font-family:'Petit Formal Script', cursive;
+    font-size: 32px;
+    text-align:center;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .sem-grades{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .sem-grade-card{
+    background: var(--white);
+    border: 1px solid rgba(217,140,174,0.35);
+    border-radius: 14px;
+    padding: 14px;
+    text-align:center;
+    box-shadow: var(--shadow);
+  }
+  .sem-grade-card .s-label{
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .sem-grade-card .s-avg{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size: 24px;
+    color: var(--pink-hot);
+    margin-top: 4px;
+  }
+  .sem-grade-card .s-avg.empty{
+    color: var(--locked-text);
+    font-size: 14px;
+  }
+
+  footer{
+    text-align:center;
+    margin-top: 50px;
+    font-family:'Playfair Display', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  ::-webkit-scrollbar{ height: 10px; }
+  ::-webkit-scrollbar-track{ background: var(--blush-deep); border-radius: 10px;}
+  ::-webkit-scrollbar-thumb{ background: var(--pink-hot); border-radius: 10px;}
+
+  @media (max-width: 640px){
+    h1{ font-size: 48px; }
+    .malla{ grid-auto-columns: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Universidad · D.R N°71/2023</div>
+  <h1>malla icif</h1>
+  <div class="subtitle">Ingeniería Civil Informática — Plan 2024, toca un ramo aprobado para tacharlo</div>
+
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span id="progress-count">0 / 0 ramos</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num" id="stat-done">0</div><div class="lbl">aprobados</div></div>
+    <div class="stat"><div class="num" id="stat-available">0</div><div class="lbl">disponibles</div></div>
+    <div class="stat"><div class="num" id="stat-locked">0</div><div class="lbl">bloqueados</div></div>
+    <div class="stat"><div class="num" id="stat-pga">—</div><div class="lbl">PGA</div></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn" id="reset-btn">reiniciar malla</button>
+  </div>
+</header>
+
+<main>
+  <div class="malla" id="malla"></div>
+</main>
+
+<section class="academic-summary">
+  <h2>tus notas ✎</h2>
+  <div class="sem-grades" id="sem-grades"></div>
+</section>
+
+<div class="overlay hidden" id="grade-overlay">
+  <div class="modal">
+    <div class="m-code" id="modal-code"></div>
+    <div class="m-name" id="modal-name"></div>
+    <input type="number" id="modal-input" min="1" max="7" step="0.1" placeholder="ej: 5.8">
+    <div class="m-hint">escala 1.0 – 7.0 · déjalo en blanco si no quieres registrar nota</div>
+    <div class="m-actions">
+      <button class="btn" id="modal-cancel">cancelar</button>
+      <button class="btn m-save" id="modal-save">guardar</button>
+    </div>
+  </div>
+</div>
+
+<footer>A. Cristiana ⋆｡°✩</footer>
+
+<script>
+// ---------- DATA ----------
+// prereq: array de códigos requeridos, o {level:N} = requiere sem N completo, o {levelRange:[a,b]}
+const semesters = [
+  {key:"1", label:"Semestre 1"},
+  {key:"2", label:"Semestre 2"},
+  {key:"3", label:"Semestre 3"},
+  {key:"4", label:"Semestre 4"},
+  {key:"5", label:"Semestre 5"},
+  {key:"6", label:"Semestre 6"},
+  {key:"6i", label:"Intersem."},
+  {key:"7", label:"Semestre 7"},
+  {key:"8", label:"Semestre 8"},
+  {key:"8i", label:"Intersem."},
+  {key:"9", label:"Semestre 9"},
+  {key:"10", label:"Semestre 10"},
+];
+
+const courses = [
+  // Semestre 1
+  {id:"DCEX0004", name:"Taller de Aptitudes Lógicas y Matemáticas", teo:0, prac:4, sem:"1", prereq:[]},
+  {id:"DCEX0007", name:"Álgebra", teo:6, prac:4, sem:"1", prereq:[]},
+  {id:"DCEX0008", name:"Introducción al Cálculo", teo:6, prac:4, sem:"1", prereq:[]},
+  {id:"ICIFA002", name:"Introducción a la Ingeniería Informática", teo:0, prac:4, sem:"1", prereq:[]},
+  {id:"INGEA001", name:"Taller de Programación I", teo:0, prac:6, sem:"1", prereq:[]},
+
+  // Semestre 2
+  {id:"DCEX0014", name:"Cálculo Diferencial e Integral", teo:6, prac:4, sem:"2", prereq:["DCEX0008"]},
+  {id:"DCEX0016", name:"Álgebra Lineal", teo:6, prac:2, sem:"2", prereq:["DCEX0007"]},
+  {id:"DQUI1056", name:"Química General", teo:6, prac:2, sem:"2", prereq:[]},
+  {id:"FORI0001", name:"Antropología", teo:4, prac:0, sem:"2", prereq:[]},
+  {id:"INGEB001", name:"Taller de Programación II", teo:0, prac:6, sem:"2", prereq:["INGEA001"]},
+
+  // Semestre 3
+  {id:"DCEX0006", name:"Física", teo:6, prac:2, sem:"3", prereq:["DCEX0016"]},
+  {id:"DCEX0017", name:"Cálculo Multivariable", teo:6, prac:2, sem:"3", prereq:["DCEX0014"]},
+  {id:"ELECDGEE01", name:"Gestión Personal y Habilidades para la Vida", teo:0, prac:4, sem:"3", prereq:[]},
+  {id:"FORI0002", name:"Ética", teo:4, prac:0, sem:"3", prereq:["FORI0001"]},
+  {id:"ICIFC002", name:"Paradigmas de Programación", teo:0, prac:6, sem:"3", prereq:["INGEA001"]},
+  {id:"INGEC005", name:"Taller de Tecnologías Digitales", teo:0, prac:6, sem:"3", prereq:["INGEB001"]},
+
+  // Semestre 4
+  {id:"DCEX0012", name:"Probabilidades y Estadística", teo:4, prac:4, sem:"4", prereq:["DCEX0014"]},
+  {id:"DCEX0018", name:"Ecuaciones Diferenciales", teo:4, prac:2, sem:"4", prereq:["DCEX0016"]},
+  {id:"DCEX0023", name:"Electricidad y Magnetismo", teo:6, prac:2, sem:"4", prereq:["DCEX0006"]},
+  {id:"ICIFD001", name:"Hito Evaluativo Integrativo", teo:0, prac:1, sem:"4", prereq:{level:3}},
+  {id:"ICIFD002", name:"Matemática Discreta", teo:2, prac:4, sem:"4", prereq:["DCEX0016"]},
+  {id:"INGED003", name:"Taller de Sustentabilidad", teo:0, prac:4, sem:"4", prereq:[]},
+
+  // Semestre 5
+  {id:"DCEX0013", name:"Estadística Avanzada", teo:2, prac:4, sem:"5", prereq:["DCEX0012"]},
+  {id:"FORI0003", name:"Persona y Sociedad", teo:4, prac:0, sem:"5", prereq:["FORI0002"]},
+  {id:"ICIFE003", name:"Infraestructura TI", teo:4, prac:2, sem:"5", prereq:[]},
+  {id:"ICIFE004", name:"Algoritmos y Estructura de Datos", teo:4, prac:2, sem:"5", prereq:[]},
+  {id:"INGEE003", name:"Optimización", teo:4, prac:2, sem:"5", prereq:["DCEX0017"]},
+  {id:"INGEE004", name:"Taller de Innovación", teo:0, prac:4, sem:"5", prereq:[]},
+
+  // Semestre 6
+  {id:"ELECDGEE02", name:"Gestión en Equipos para el Alto Desempeño", teo:0, prac:3, sem:"6", prereq:[]},
+  {id:"ELECFORI01", name:"Electivo I: Formación Integral", teo:4, prac:0, sem:"6", prereq:[]},
+  {id:"ICIFF005", name:"Sistemas Operativos", teo:2, prac:4, sem:"6", prereq:[]},
+  {id:"ICIFF006", name:"Bases de Datos", teo:4, prac:4, sem:"6", prereq:["INGEB001"]},
+  {id:"ICIFF007", name:"Introducción a la Ciencia de Datos", teo:4, prac:0, sem:"6", prereq:["INGEB001"]},
+  {id:"INGEF004", name:"Taller de Emprendimiento", teo:0, prac:4, sem:"6", prereq:["ICIFE004"]},
+
+  // Intersemestre 6
+  {id:"ICIFG007", name:"Práctica Industrial", teo:0, prac:13, sem:"6i", prereq:{level:5}},
+
+  // Semestre 7
+  {id:"ELECFORI02", name:"Electivo II: Formación Integral", teo:4, prac:0, sem:"7", prereq:[]},
+  {id:"ICIFG008", name:"Inteligencia Artificial", teo:4, prac:4, sem:"7", prereq:["ICIFE004"]},
+  {id:"ICIFG009", name:"Big Data", teo:0, prac:4, sem:"7", prereq:["ICIFF006"]},
+  {id:"ICIFG010", name:"Aplicaciones y Tecnologías de la Web", teo:0, prac:6, sem:"7", prereq:["ICIFC002"]},
+  {id:"ICIFG011", name:"Programación Avanzada", teo:0, prac:6, sem:"7", prereq:["ICIFC002"]},
+
+  // Semestre 8
+  {id:"ELECFORI03", name:"Electivo III: Formación Integral", teo:4, prac:0, sem:"8", prereq:[]},
+  {id:"ICIFH004", name:"Taller de Interfaces y Diseño de Software", teo:4, prac:2, sem:"8", prereq:["ICIFF006"]},
+  {id:"ICIFH005", name:"Ingeniería de Software y Aseguramiento de la Calidad", teo:4, prac:2, sem:"8", prereq:["ICIFF006"]},
+  {id:"ICIFH006", name:"Hito Evaluativo Integrativo Interprofesional", teo:0, prac:1, sem:"8", prereq:{levelRange:[6,7]}},
+  {id:"INGEH002", name:"Formulación y Evaluación de Proyectos", teo:4, prac:4, sem:"8", prereq:[]},
+  {id:"INGEH003", name:"Gestión para el Desarrollo Sostenible", teo:0, prac:4, sem:"8", prereq:[]},
+
+  // Intersemestre 8
+  {id:"ICIFI006", name:"Práctica Profesional", teo:0, prac:13, sem:"8i", prereq:{level:7}},
+
+  // Semestre 9
+  {id:"ELECICIF01", name:"Electivo de Profundización I", teo:4, prac:0, sem:"9", prereq:[]},
+  {id:"ELECICIF02", name:"Electivo de Profundización II", teo:4, prac:0, sem:"9", prereq:[]},
+  {id:"ICIFI007", name:"Ciberseguridad", teo:0, prac:4, sem:"9", prereq:["ICIFE003"]},
+  {id:"ICIFI008", name:"Taller de Integración de Software", teo:0, prac:4, sem:"9", prereq:[]},
+  {id:"ICIFI009", name:"Gestión de Proyectos TI", teo:4, prac:0, sem:"9", prereq:["INGEH002"]},
+  {id:"ICIFI010", name:"Taller en Empresa I", teo:2, prac:2, sem:"9", prereq:["INGEH002"]},
+
+  // Semestre 10 - comunes
+  {id:"ELECDGEE03", name:"Gestión de Carrera y Desarrollo Profesional", teo:0, prac:3, sem:"10", prereq:[]},
+  {id:"ICIFJ004", name:"Transformación Digital y Gobierno TI", teo:4, prac:0, sem:"10", prereq:[]},
+];
+
+// Modalidades de titulación (semestre 10, se elige una vía)
+const titulaciones = {
+  titulo: {
+    label: "Vía Proyecto de Título",
+    cursos: [{id:"ICIFJ005", name:"Proyecto de Título", teo:0, prac:4, sem:"10", prereq:{level:9}}]
+  },
+  emprendimiento: {
+    label: "Vía Proyecto en Emprendimiento",
+    cursos: [{id:"ICIFJ006", name:"Proyecto en Emprendimiento", teo:0, prac:4, sem:"10", prereq:{level:9}}]
+  },
+  trainee: {
+    label: "Vía Proyecto Trainee",
+    cursos: [{id:"ICIFJ007", name:"Proyecto Trainee", teo:0, prac:4, sem:"10", prereq:{level:9}}]
+  },
+  empresa: {
+    label: "Vía Proyecto en Empresa",
+    cursos: [
+      {id:"ELECICIF03", name:"Electivo de Profundización III", teo:4, prac:0, sem:"10", prereq:[]},
+      {id:"ELECICIF04", name:"Electivo de Profundización IV", teo:4, prac:0, sem:"10", prereq:[]},
+      {id:"ICIFJ008", name:"Taller en Empresa II", teo:0, prac:4, sem:"10", prereq:["ICIFI010"]},
+    ]
+  }
+};
+
+// ---------- STATE ----------
+const STORAGE_KEY = "malla_icif_2024_progreso";
+const TIT_KEY = "malla_icif_2024_titulacion";
+const GRADES_KEY = "malla_icif_2024_notas";
+
+function loadDone(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveDone(done){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(done));
+}
+function loadTit(){
+  return localStorage.getItem(TIT_KEY) || "titulo";
+}
+function saveTit(v){
+  localStorage.setItem(TIT_KEY, v);
+}
+function loadGrades(){
+  try{
+    const raw = localStorage.getItem(GRADES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  }catch(e){ return {}; }
+}
+function saveGrades(g){
+  localStorage.setItem(GRADES_KEY, JSON.stringify(g));
+}
+
+let done = loadDone();
+let currentTit = loadTit();
+let grades = loadGrades(); // { courseId: 5.8, ... }
+
+function allCourses(){
+  return courses.concat(titulaciones[currentTit].cursos);
+}
+
+function courseById(id){
+  return allCourses().find(c => c.id === id);
+}
+
+function isDone(id){ return !!done[id]; }
+
+function semesterComplete(n){
+  const inSem = allCourses().filter(c => c.sem === String(n));
+  if(inSem.length === 0) return false;
+  return inSem.every(c => isDone(c.id));
+}
+
+function isUnlocked(course){
+  const p = course.prereq;
+  if(Array.isArray(p)){
+    return p.every(code => isDone(code));
+  }
+  if(p && p.level !== undefined){
+    return semesterComplete(p.level);
+  }
+  if(p && p.levelRange){
+    return p.levelRange.every(n => semesterComplete(n));
+  }
+  return true;
+}
+
+let pendingCourseId = null;
+
+function toggleCourse(id){
+  const course = courseById(id);
+  if(!course) return;
+  if(!isDone(id) && !isUnlocked(course)) return; // no se puede marcar si está bloqueado
+
+  if(isDone(id)){
+    // desmarcar: quita aprobado y su nota
+    delete done[id];
+    delete grades[id];
+    saveDone(done);
+    saveGrades(grades);
+    render();
+  } else {
+    // marcar como aprobado: pedir nota
+    openGradeModal(course);
+  }
+}
+
+function openGradeModal(course){
+  pendingCourseId = course.id;
+  document.getElementById("modal-code").textContent = course.id;
+  document.getElementById("modal-name").textContent = course.name;
+  const input = document.getElementById("modal-input");
+  input.value = grades[course.id] ?? "";
+  document.getElementById("grade-overlay").classList.remove("hidden");
+  setTimeout(() => input.focus(), 50);
+}
+
+function closeGradeModal(){
+  document.getElementById("grade-overlay").classList.add("hidden");
+  pendingCourseId = null;
+}
+
+function confirmGrade(){
+  if(!pendingCourseId) return;
+  const input = document.getElementById("modal-input");
+  let val = input.value.trim();
+
+  done[pendingCourseId] = true;
+  if(val === ""){
+    delete grades[pendingCourseId];
+  } else {
+    let num = parseFloat(val.replace(",", "."));
+    if(isNaN(num)) num = null;
+    if(num !== null){
+      num = Math.min(7, Math.max(1, num));
+      grades[pendingCourseId] = Math.round(num * 10) / 10;
+    }
+  }
+  saveDone(done);
+  saveGrades(grades);
+  closeGradeModal();
+  render();
+}
+
+document.getElementById("modal-cancel").addEventListener("click", closeGradeModal);
+document.getElementById("modal-save").addEventListener("click", confirmGrade);
+document.getElementById("grade-overlay").addEventListener("click", (e) => {
+  if(e.target.id === "grade-overlay") closeGradeModal();
+});
+document.getElementById("modal-input").addEventListener("keydown", (e) => {
+  if(e.key === "Enter") confirmGrade();
+  if(e.key === "Escape") closeGradeModal();
+});
+
+function gradeTagClass(g){
+  if(g < 4.0) return "low";
+  if(g < 5.5) return "mid";
+  return "high";
+}
+
+// ---------- RENDER ----------
+function render(){
+  const malla = document.getElementById("malla");
+  malla.innerHTML = "";
+
+  let totalDone = 0, totalAvail = 0, totalLocked = 0, totalAll = 0;
+
+  semesters.forEach(sem => {
+    const col = document.createElement("div");
+    col.className = "col";
+
+    const head = document.createElement("div");
+    head.className = "col-head";
+    head.innerHTML = `<div class="sem">${sem.label}</div>`;
+    col.appendChild(head);
+
+    if(sem.key === "10"){
+      const titWrap = document.createElement("div");
+      titWrap.className = "titulacion";
+      const select = document.createElement("select");
+      Object.entries(titulaciones).forEach(([key, t]) => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = t.label;
+        if(key === currentTit) opt.selected = true;
+        select.appendChild(opt);
+      });
+      select.addEventListener("change", e => {
+        currentTit = e.target.value;
+        saveTit(currentTit);
+        render();
+      });
+      titWrap.appendChild(select);
+      col.appendChild(titWrap);
+    }
+
+    let semCourses = allCourses().filter(c => c.sem === sem.key);
+
+    semCourses.forEach(course => {
+      totalAll++;
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const d = isDone(course.id);
+      const unlocked = isUnlocked(course);
+
+      if(d){
+        card.classList.add("done");
+        totalDone++;
+      } else if(unlocked){
+        card.classList.add("available");
+        totalAvail++;
+      } else {
+        card.classList.add("locked");
+        totalLocked++;
+      }
+
+      let badgeHtml = "";
+      if(d){
+        const g = grades[course.id];
+        if(g !== undefined){
+          badgeHtml = `<div class="grade-tag ${gradeTagClass(g)}">${g.toFixed(1)}</div>`;
+        } else {
+          badgeHtml = `<div class="badge">✓</div>`;
+        }
+      } else if(!unlocked){
+        badgeHtml = `<div class="badge lock-icon">🔒</div>`;
+      }
+
+      card.innerHTML = `
+        ${badgeHtml}
+        <div>
+          <div class="code">${course.id}</div>
+          <div class="name">${course.name}</div>
+        </div>
+        <div class="credits">teo ${course.teo} · prác ${course.prac} hrs/sem</div>
+      `;
+
+      card.addEventListener("click", () => toggleCourse(course.id));
+      col.appendChild(card);
+    });
+
+    malla.appendChild(col);
+  });
+
+  document.getElementById("stat-done").textContent = totalDone;
+  document.getElementById("stat-available").textContent = totalAvail;
+  document.getElementById("stat-locked").textContent = totalLocked;
+  document.getElementById("progress-count").textContent = `${totalDone} / ${totalAll} ramos`;
+  const pct = totalAll ? Math.round((totalDone/totalAll)*100) : 0;
+  document.getElementById("progress-pct").textContent = `${pct}%`;
+  document.getElementById("progress-fill").style.width = `${pct}%`;
+
+  renderAcademicSummary();
+}
+
+function renderAcademicSummary(){
+  // PGA general
+  const allGrades = Object.values(grades).filter(g => typeof g === "number");
+  const pgaEl = document.getElementById("stat-pga");
+  if(allGrades.length){
+    const pga = allGrades.reduce((a,b) => a+b, 0) / allGrades.length;
+    pgaEl.textContent = pga.toFixed(2);
+  } else {
+    pgaEl.textContent = "—";
+  }
+
+  // promedio por semestre (solo semestres numerados 1-10, agrupando intersem con su nivel)
+  const semKeys = ["1","2","3","4","5","6","6i","7","8","8i","9","10"];
+  const wrap = document.getElementById("sem-grades");
+  wrap.innerHTML = "";
+
+  semKeys.forEach(key => {
+    const semLabel = semesters.find(s => s.key === key)?.label ?? key;
+    const semCourses = allCourses().filter(c => c.sem === key);
+    const semGrades = semCourses
+      .map(c => grades[c.id])
+      .filter(g => typeof g === "number");
+
+    const card = document.createElement("div");
+    card.className = "sem-grade-card";
+
+    let avgHtml;
+    if(semGrades.length){
+      const avg = semGrades.reduce((a,b)=>a+b,0) / semGrades.length;
+      avgHtml = `<div class="s-avg">${avg.toFixed(2)}</div>`;
+    } else {
+      avgHtml = `<div class="s-avg empty">sin notas</div>`;
+    }
+
+    card.innerHTML = `<div class="s-label">${semLabel}</div>${avgHtml}`;
+    wrap.appendChild(card);
+  });
+}
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  if(confirm("¿Reiniciar toda tu malla? Esto borrará tu progreso guardado.")){
+    done = {};
+    saveDone(done);
+    render();
+  }
+});
+
+render();
+</script>
+</body>
+</html>
